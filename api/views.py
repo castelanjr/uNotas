@@ -14,5 +14,5 @@ def main(request):
 	scraper = Scraper(username, password)
 	data = scraper.scrap()
 
-	return HttpResponse(obj2json(data), mimetype='application/json'
+	return HttpResponse(obj2json(data), mimetype='application/json')
 
