@@ -19,7 +19,7 @@ def main():
 				for discipline in semester.disciplines:
 					print 'Discipline: %s' % discipline.name
 					for grade in discipline.grades:
-						print '%s - %s' % (grade.name, grade.value)
+						print '%s - %s' % (grade.name.decode('utf-8'), grade.value)
 		except Exception, e:
 			print 'Could not fetch grades: %s' % e.message
 	else:
