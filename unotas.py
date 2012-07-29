@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from api.scraper import Scraper
+from scraper import Scraper
 
 import optparse
 

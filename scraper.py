@@ -2,7 +2,7 @@
 
 import urllib2, urllib
 
-from models import Student, Semester, Discipline, Grade
+from api.models import Student, Semester, Discipline, Grade
 
 from BeautifulSoup import BeautifulSoup
 
