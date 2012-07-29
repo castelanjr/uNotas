@@ -12,7 +12,7 @@ def main(request):
 	username = request.POST['username']
 	password = request.POST['password']
 	scraper = Scraper(username, password)
-	data = scraper.scrap()
+	data = scraper.scrap(True)
 
 	return HttpResponse(obj2json(data), mimetype='application/json')
 

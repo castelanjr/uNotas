@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 
-import urllib2, urllib
+import urllib2, urllib, hashlib
 
 from api.models import Student, Semester, Discipline, Grade
+from api.json_utils import obj2json
 
 from BeautifulSoup import BeautifulSoup
 
@@ -11,7 +12,7 @@ class Scraper(object):
 		self.username = username
 		self.password = password.encode('latin-1')
 		
-	def scrap(self):
+	def scrap(self, get_hash = None):
 		cookie = urllib2.HTTPCookieProcessor()
 		opener = urllib2.build_opener(cookie)
 		urllib2.install_opener(opener)
@@ -41,7 +42,7 @@ class Scraper(object):
 				for total in discipline.findAll("div", "notas-texto"):
 					value = total.parent.findAll("div", "notas-final")[i].contents[0].strip()
 					value = value.replace("\n", "").replace("\t", "")
-					grade_total_obj = Grade("Total", value)
+					grade_total_obj = Grade("Média", value)
 	
 					discipline_obj = Discipline(total.find("div", "notas-disciplina").contents[0].strip())
 					
@@ -54,6 +55,12 @@ class Scraper(object):
 					i += 1
 					semester_obj.disciplines.append(discipline_obj)
 			student.semesters.append(semester_obj)
+
+		if get_hash:
+			try:
+				student.hash = hashlib.sha1(obj2json(student)).hexdigest()
+			except Exception, e:
+				print e.message
 					
 
 		return student

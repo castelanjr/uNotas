@@ -5,6 +5,7 @@ class Student(object):
 		self.name = ''
 		self.course = ''
 		self.semesters = []
+		self.hash = ''
 
 class Semester(object):
 	def __init__(self, period):
