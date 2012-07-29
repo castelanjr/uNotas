@@ -16,7 +16,7 @@ class Discipline(object):
 		self.name = name
 		self.grades = []
 
-class grade(object):
+class Grade(object):
 	def __init__(self, name, value):
 		self.name = name
 		self.value = value
